@@ -34,41 +34,6 @@ elif selected_option == "DeepLabV3":
 with col1:
     st.write("### Model Architecture")
     st.image(os.path.join(dataPath, 'arch.png'))
-    folder_upload_button = """
-    <div style="display: flex; justify-content: center;">
-    <label class="upload-btn">
-        <input type="file" id="fileElem" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
-        Upload Folder
-    </label>
-    </div>
-
-    <script>
-    const fileElem = document.getElementById("fileElem");
-    const uploadBtn = document.querySelector(".upload-btn");
-
-    fileElem.addEventListener("change", (e) => {
-        const fileList = e.target.files;
-        if (fileList.length > 0) {
-        uploadBtn.innerText = fileList[0].webkitRelativePath;
-        uploadBtn.disabled = true;
-        const fileElemData = new DataTransfer();
-        for (const file of fileList) {
-            fileElemData.items.add(file);
-        }
-        fileElem.files = fileElemData.files;
-        Shiny.setInputValue("file_uploaded", true);
-        }
-    });
-    </script>
-    """
-    st.markdown(folder_upload_button, unsafe_allow_html=True)
-    if st.button("Save Uploaded Folder"):
-        uploaded_folder = st.file_uploader("Uploaded Folder", type=None, key="fileElem", accept_multiple_files=False)
-        if uploaded_folder is not None:
-            save_path = "/path/to/save/folder"  # Replace this with the desired save path
-            save_uploaded_folder(uploaded_folder, save_path)
-            st.success("Folder saved successfully.")
-
     with open(os.path.join(dataPath, 'check.ckpt'), "rb") as f:
         fileContents = f.read()
     st.download_button(
@@ -76,6 +41,10 @@ with col1:
         data = fileContents,
         file_name = f'{selected_option}.ckpt'
     )
+    st.write("### config")
+    with open(os.path.join(dataPath, 'config.yaml'), 'r') as f:
+        config = f.read()
+    st.code(config, language='yaml')
 
 with col2:
     st.write(f'### Example {selected_option} Model Outputs')
