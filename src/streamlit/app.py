@@ -3,8 +3,8 @@ import streamlit as st
 import os
 
 st.set_page_config(layout="wide")
-default_path = os.getcwd()
-modelPath = os.path.join(default_path, "..", "models", "supervised")
+default_path = "."
+modelPath = os.path.join(".", "..", "models", "supervised")
 
 st.markdown("<h1 style='text-align: center; color: white;'>BigMacGan Final Project</h1>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3, gap="large")
