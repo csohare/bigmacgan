@@ -1,6 +1,12 @@
 from select import select
 import streamlit as st
 import os
+def save_uploaded_folder(uploaded_folder, save_path):
+    os.makedirs(save_path, exist_ok=True)
+    for root, dirs, files in os.walk(uploaded_folder):
+        for file in files:
+            print(file)
+
 
 st.set_page_config(layout="wide")
 default_path = os.path.join(os.getcwd(), 'src', 'streamlit')
@@ -46,6 +52,14 @@ with col1:
     </script>
     """
     st.markdown(folder_upload_button, unsafe_allow_html=True)
+    if st.button("Save Uploaded Folder"):
+        if "fileElem" not in st.session_state:
+            st.error("No folder uploaded.")
+        else:
+            uploaded_folder = st.session_state["fileElem"]
+            # Replace this with the desired save path
+            save_uploaded_folder(uploaded_folder, default_path)
+            st.success("Folder saved successfully.")
     with open(os.path.join(dataPath, 'check.ckpt'), "rb") as f:
         fileContents = f.read()
     st.download_button(
