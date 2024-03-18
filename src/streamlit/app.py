@@ -3,8 +3,8 @@ import streamlit as st
 import os
 
 st.set_page_config(layout="wide")
-default_path = "."
-modelPath = os.path.join(".", "..", "models", "supervised")
+default_path = os.path.join(os.getcwd, 'src', 'streamlit')
+modelPath = os.path.join(os.getcwd(), "src", "models", "supervised")
 for item in os.listdir(os.getcwd()):
     st.write(item)
 
