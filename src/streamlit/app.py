@@ -41,7 +41,7 @@ with col1:
         data = fileContents,
         file_name = f'{selected_option}.ckpt'
     )
-    st.write("### config")
+    st.write("### Model Config")
     with open(os.path.join(dataPath, 'config.yaml'), 'r') as f:
         config = f.read()
     st.code(config, language='yaml')
