@@ -28,6 +28,7 @@ elif selected_option == "DeepLabV3":
 with col1:
     st.write("### Model Architecture")
     st.image(os.path.join(dataPath, 'arch.png'))
+    st.file_uploader("Upload Tile")
     with open(os.path.join(dataPath, 'check.ckpt'), "rb") as f:
         fileContents = f.read()
     st.download_button(
