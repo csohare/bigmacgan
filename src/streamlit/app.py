@@ -5,8 +5,6 @@ import os
 st.set_page_config(layout="wide")
 default_path = os.path.join(os.getcwd(), 'src', 'streamlit')
 modelPath = os.path.join(os.getcwd(), 'src' , "models", "supervised")
-for item in os.listdir(os.getcwd()):
-    st.write(item)
 
 st.markdown("<h1 style='text-align: center; color: white;'>BigMacGan Final Project</h1>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3, gap="large")
