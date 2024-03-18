@@ -54,6 +54,7 @@ with col1:
     """
     st.markdown(folder_upload_button, unsafe_allow_html=True)
     if st.button("Save Uploaded Folder"):
+        st.write(st.session_state)
         if "fileElem" not in st.session_state:
             st.error("No folder uploaded.")
         else:
