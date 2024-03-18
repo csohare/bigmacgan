@@ -5,7 +5,7 @@ def save_uploaded_folder(uploaded_folder, save_path):
     os.makedirs(save_path, exist_ok=True)
     for root, dirs, files in os.walk(uploaded_folder):
         for file in files:
-            print(file)
+            st.write(file)
 
 
 st.set_page_config(layout="wide")
@@ -34,6 +34,7 @@ elif selected_option == "DeepLabV3":
 with col1:
     st.write("### Model Architecture")
     st.image(os.path.join(dataPath, 'arch.png'))
+
     folder_upload_button = """
     <div style="display: flex; justify-content: center;">
     <label class="upload-btn">
@@ -57,9 +58,10 @@ with col1:
             st.error("No folder uploaded.")
         else:
             uploaded_folder = st.session_state["fileElem"]
-            # Replace this with the desired save path
             save_uploaded_folder(uploaded_folder, default_path)
             st.success("Folder saved successfully.")
+
+
     with open(os.path.join(dataPath, 'check.ckpt'), "rb") as f:
         fileContents = f.read()
     st.download_button(
