@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "hw03-segmentation-bigmacgan",
+			"path": "../../.."
+		},
+		{
+			"name": "data",
+			"path": "../../../../../../../../../Downloads/Origin_data-20240309T235831Z-001/Origin_data/data"
+		}
+	],
+	"settings": {}
+}
