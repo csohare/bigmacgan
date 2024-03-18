@@ -28,7 +28,24 @@ elif selected_option == "DeepLabV3":
 with col1:
     st.write("### Model Architecture")
     st.image(os.path.join(dataPath, 'arch.png'))
-    st.file_uploader("Upload Tile")
+    folder_upload_button = """
+    <div style="display: flex; justify-content: center;">
+    <label class="upload-btn">
+        <input type="file" id="fileElem" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+        Upload Folder
+    </label>
+    </div>
+
+    <script>
+    const fileElem = document.getElementById("fileElem");
+    const uploadBtn = document.querySelector(".upload-btn");
+
+    uploadBtn.addEventListener("click", (e) => {
+        fileElem.click();
+    });
+    </script>
+    """
+    st.markdown(folder_upload_button, unsafe_allow_html=True)
     with open(os.path.join(dataPath, 'check.ckpt'), "rb") as f:
         fileContents = f.read()
     st.download_button(
